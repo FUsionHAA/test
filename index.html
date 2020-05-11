@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citrus test - registration form</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+
+    <form class="login" method="POST">
+        <fieldset>
+            <legend>USER REGISTRATION</legend>
+
+            <!-- 
+                I didn't understand if i should make regular header
+                where I chose the option for phone/email or just make it an 
+                option to chose in form. I made it an option to chose because it makes
+                more sence and is something i usually see on websites.
+                I hope thats not a mistake!
+            -->
+            <div class="user__text">User Name *</div>
+
+            <div class="user__container">
+                <div id="option" class="login__field login__field--message">
+                    <p>Chose one of the options to make your User Name with:</p>
+                </div>
+
+                <div id="phone" class="login__field login__field--phone" style="opacity: 0;">
+                    <div class="field__container">
+                        <input id="phoneInput" class="field__input" name="phoneInput" type="text" placeholder=" ">
+                        <label class="field__placeholder" for="phoneInput">Phone number</label>
+                    </div>
+
+                    <span id="phoneWarning" class="login__warning login__warning--phone" style="display: none">
+                        Enter valid phone number
+                    </span>
+                </div>
+
+                <div id="email" class="login__field login__field--email" style="opacity: 0;">
+                    <div class="field__container">
+                        <input id="emailInput" class="field__input" name="emailInput" type="text" placeholder=" ">
+                        <label class="field__placeholder" for="emailInput">Еmail</label>
+                    </div>
+                    <span id="emailWarning" class="login__warning login__warning--email" style="display: none">
+                        Enter valid email
+                    </span>
+                </div>
+            </div>
+
+            <div class="login__field">
+                <div class="login__field__radio">
+                    <input type="radio" id="phoneRadio" name="validation" class="login__field__radio__input"
+                        onchange="toggleNameValidation()">
+                    <label for="phoneRadio" class="login__field__radio__label">Phone</label>
+                </div>
+
+                <div class="login__field__radio">
+                    <input type="radio" id="emailRadio" name="validation" class="login__field__radio__input"
+                        onchange="toggleNameValidation()">
+                    <label for="emailRadio" class="login__field__radio__label">Email</label>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="login__field">
+                <div class="field__container">
+                    <input id="password" class="field__input" name="password" type="password" placeholder=" ">
+                    <label class="field__placeholder" for="password">Password *</label>
+                </div>
+                <span id="passReq" class="login__warning" style="display: none">Required</span>
+            </div>
+
+            <div class="login__field">
+                <div class="field__container">
+                    <input id="confirm" class="field__input" name="confirm" type="password" placeholder=" ">
+                    <label class="field__placeholder" for="confirm">Confirm Password *</label>
+                </div>
+                <span id="confirmReq" class="login__warning login__warning--password" style="display: none">
+                    Pasword dose not match
+                </span>
+            </div>
+
+            <hr>
+
+            <div class="login__field">
+                <span>Chose currency: </span>
+
+                <div class="login__field__radio">
+                    <input type="radio" name="currency" id="usd" class="login__field__radio__input" value="usd" checked>
+                    <label for="usd" class="login__field__radio__label">USD</label>
+                </div>
+
+                <div class="login__field__radio">
+                    <input type="radio" name="currency" id="eur" class="login__field__radio__input" value="eur">
+                    <label for="eur" class="login__field__radio__label">EUR</label>
+                </div>
+
+                <div class="login__field__radio">
+                    <input type="radio" name="currency" id="din" class="login__field__radio__input" value="din">
+                    <label for="din" class="login__field__radio__label">DIN</label>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="login__field">
+                <label class="login__cbLable" for="terms">
+                    <span class="test1">Terms of use *</span>
+                    <input class="cb cb1" id="terms" type="checkbox" name="social" />
+                    <i></i>
+                    <span id="termsReq" class="login__warning login__warning--terms"
+                        style="display: none">Required</span>
+                </label>
+            </div>
+
+            <div class="login__field">
+                <label class="login__cbLable" for="newsletter">
+                    <span class="login__cbSpan">Recive our newsletter</span>
+                    <input class="cb cb1" id="newsletter" type="checkbox" name="social" />
+                    <i></i>
+                    <span id="termsReq" style="display: none">Required</span>
+                </label>
+            </div>
+
+            <p class="login__required">Fields marked with * are required!</p>
+
+            <hr>
+            <div class="login__field login__field--submit">
+                <div id="btn" class="btn" onclick="sendAplication()">
+                    <span id="send">SEND</span>
+                    <div id="spinner" class="spinner" style="display: none">
+                        <div class="spinner__container">
+                            <div class="spinner__loader">
+                                <div class="spinner__line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+    </form>
+
+    <div id="popup" class="popup">
+        <div class="popup__backdrop" onclick="closePopup()"></div>
+
+        <div id="success" class="popup__success" style="display: none">
+            <p>You have successfully created new account!</p>
+            <p>Please, proceed to login page.</p>
+            <div class="btn" onclick="goToLogin()">Go to Login</div>
+        </div>
+
+        <div id="error" class="popup__error" style="display: none">
+            <p>Something went wrong! Your account was not created.</p>
+            <p>Please, try again latter.</p>
+            <div class="btn" onclick="closePopup()">Return</div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
